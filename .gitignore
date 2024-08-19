@@ -1,0 +1,13 @@
+node_modules
+dist
+*.log*
+.nuxt
+.output
+.unlighthouse
+pnpm-lock.yaml
+.vscode
+.env
+.vite
+.nitro
+.cache
+**/.DS_Store

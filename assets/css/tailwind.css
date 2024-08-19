@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	src: url('../Noto_Sans_Khmer/NotoSansKhmer-VariableFont_wdth,wght.woff2') format('woff2');
+	font-family: 'Noto Sans Khmer';
+}
+
+.prose {
+	@apply prose-p:mb-6 prose-p:mt-0 prose-p:text-base sm:prose-p:text-lg prose-ol:mt-0 prose-ul:mt-0 prose-li:text-base sm:prose-li:text-lg prose-headings:mb-4 prose-headings:mt-6 prose-img:rounded-md tiptap prose-th:bg-gray-100 prose-th:pt-2 2xl:prose-2xl sm:prose-h1:text-4xl sm:prose-h2:text-3xl sm:prose-h3:text-2xl prose-h1:text-xl prose-h2:text-lg prose-h3:text-base;
+}
+
+.prose li {
+	margin: 6px;
+}
+
+.prose li p {
+	margin: 0;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+	color: #adb5bd;
+	content: attr(data-placeholder);
+	float: left;
+	height: 0;
+	pointer-events: none;
+}
+
+.ProseMirror {
+	@apply focus:!outline-0 px-4 py-4 min-h-[150px] relative;
+}
+
+.ProseMirror iframe {
+	@apply !w-full !h-auto max-w-[480px] min-h-[320px] !aspect-video mr-6;
+}
+
+.ProseMirror img.ProseMirror-selectednode,
+.ProseMirror .ProseMirror-selectednode iframe {
+	@apply outline outline-8 outline-yellow-500 transition-[outline] duration-150 block;
+}
+
+.ProseMirror img {
+	@apply object-scale-down object-center w-fit;
+}
+
+.ProseMirror img.ProseMirror-selectednode,
+.ProseMirror div[data-youtube-video] {
+	@apply cursor-move;
+}
+
+.ProseMirror .selectedCell:after {
+	@apply z-[2] absolute inset-0 bg-gray-400/30 pointer-events-none content-[''];
+}
+
+.ProseMirror .column-resize-handle {
+	@apply absolute w-1 top-0 right-[-2px] bottom-[-2px] bg-sky-200 pointer-events-none;
+}
+
+.ProseMirror-gapcursor {
+	@apply hidden pointer-events-none !relative;
+	@apply after:content-[''] after:block after:!relative after:h-5 after:border-l after:!border-t-0 after:border-black after:mt-1;
+}
+.ProseMirror-gapcursor:after {
+	animation: ProseMirror-cursor-blink 1.1s steps(2, start) infinite;
+}
+
+@keyframes ProseMirror-cursor-blink {
+	to {
+		visibility: hidden;
+	}
+}
+.ProseMirror-focused .ProseMirror-gapcursor {
+	@apply block;
+}

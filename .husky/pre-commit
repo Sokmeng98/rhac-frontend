@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Check Prettier standards for staged files
+echo '🚨 Checking code style and quality for staged files'
+pnpm exec -- lint-staged ||
+(
+	echo 'Husky: ❌ Style check failed for staged files.';
+	false;
+)
+
+# Run test
+echo '🏗️👷 Testing, testing and building your project before committing'
+pnpm test ||
+(
+	echo 'Husky: ❌ Test Failed.';
+	false;
+)
+
+# If everything passes... Now we can commit
+echo 'Husky: ✅ All checks passed! Trying to build now.'
+
+pnpm build ||
+(
+	echo 'Husky: ❌ Build failed. View the errors above to see why.'
+	false;
+)
+
+# If everything passes... Now we can commit
+echo 'Husky: ✅ Committing changes.'
